@@ -14,31 +14,30 @@
 
 package com.ninetwozero.battlechat.adapters;
 
-import java.util.List;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.ninetwozero.battlechat.R;
 import com.ninetwozero.battlechat.abstractions.AbstractListAdapter;
 import com.ninetwozero.battlechat.datatypes.Message;
 import com.ninetwozero.battlechat.utils.DateUtils;
 
+import java.util.List;
+
 public class MessageListAdapter extends AbstractListAdapter<Message> {
 	
-	private String mOtherUser;
+	private String mCurrentUser;
 	
-	public MessageListAdapter(Context context, String other) {
+	public MessageListAdapter(Context context, String currentUser) {
 		super(context);
-		mOtherUser = other;
+		mCurrentUser = currentUser;
 	}
-	
-	public MessageListAdapter(Context context, List<Message> items, String other) {
+
+	public MessageListAdapter(Context context, List<Message> items, String currentUser) {
 		super(context, items);
-		mOtherUser = other;
+		mCurrentUser = currentUser;
 	}
-	
+
 	@Override
 	public long getItemId(int position) {
 		return getItem(position).getId();
@@ -47,12 +46,12 @@ public class MessageListAdapter extends AbstractListAdapter<Message> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final Message message = getItem(position);
-		final boolean fromOtherUser = mOtherUser.equals(message.getUsername());
+		final boolean fromCurrentUser = mCurrentUser.equals(message.getUsername());
 		if( convertView == null ) {
 			convertView = mLayoutInflater.inflate(R.layout.list_item_message, null);
 		}
 		
-		setText(convertView, R.id.username, message.getUsername(), fromOtherUser? R.color.orange : R.color.blue);
+		setText(convertView, R.id.username, message.getUsername(), fromCurrentUser? R.color.blue : R.color.orange);
 		setText(convertView, R.id.message, message.getMessage());
 		setText(convertView, R.id.timestamp, DateUtils.getRelativeTimeString(mContext, message.getTimestamp()));
 		return convertView;

@@ -1,0 +1,33 @@
+<!--
+	This file is part of BattleChat
+
+    BattleChat is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    BattleChat is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="horizontal">
+    <fragment
+        android:id="@+id/fragment_list_contacts"
+        android:tag="ContactListFragment"
+        android:name="com.ninetwozero.battlechat.fragments.ContactListFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"/>
+    <fragment
+        android:id="@+id/fragment_chat"
+        android:tag="ChatFragment"
+        android:name="com.ninetwozero.battlechat.fragments.ChatFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"/>
+</LinearLayout>

@@ -19,14 +19,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
-
-import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.ninetwozero.battlechat.BattleChat;
 import com.ninetwozero.battlechat.activities.LoginActivity;
 import com.ninetwozero.battlechat.http.BattleChatClient;
 import com.ninetwozero.battlechat.misc.Keys;
 
-public class AbstractListActivity extends SherlockListActivity {
+public class AbstractListActivity extends SherlockFragmentActivity {
 	protected SharedPreferences mSharedPreferences;
 	private Toast mToast;
 	
