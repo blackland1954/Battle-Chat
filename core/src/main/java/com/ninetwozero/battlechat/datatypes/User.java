@@ -18,30 +18,48 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
-	public final static int OFFLINE = 0;
-	public final static int ONLINE = 1;
-	public final static int PLAYING = 264;
-	
-	private long mId;
+    public final static int OFFLINE = 0;
+
+    public static final int ONLINE_WEB = 1;
+    public static final int ONLINE_TABLET = 2;
+    public static final int ONLINE_MOBILE = 4;
+    public static final int ONLINE_GAME = 8;
+    public static final int ONLINE_ORIGIN = 16;
+
+    public static final int PLAYING_MP = 256;
+    public static final int PLAYING_COOP = 512;
+    public static final int PLAYING_ORIGIN = 1024;
+
+    public static final int AWAY_WEB = 65536;
+    public static final int AWAY_ORIGIN = 131072;
+
+    public static final int INVISIBLE_WEB = 6777216;
+    public static final int INVISIBLE_TABLET = 33554432;
+    public static final int INVISIBLE_MOBILE = 67108864;
+
+    public static final long GROUP_WEB = 4294967296L;
+    public static final long GROUP_ORIGIN = 8589934592L;
+
+    private long mId;
 	private String mUsername;
-	private int mStatus;
+	private int mState;
 	
 	public User(Parcel in) {
 		mId = in.readLong();
 		mUsername = in.readString();
-		mStatus = in.readInt();
+		mState = in.readInt();
 	}
 	
 	public User(long id, String name) {
 		mId = id;
 		mUsername = name;
-		mStatus = ONLINE;
+		mState = ONLINE_WEB;
 	}
 	
 	public User(long id, String name, int status) {
 		mId = id;
 		mUsername = name;
-		mStatus = status;
+		mState = status;
 	}
 	
 	public long getId() {
@@ -53,29 +71,50 @@ public class User implements Parcelable {
 	}
 	
 	public boolean isPlaying() {
-		return mStatus == PLAYING;
+		return mState == PLAYING_MP || mState == PLAYING_ORIGIN || mState ==  PLAYING_COOP;
 	}
 	
 	public boolean isOnline() {
-		return mStatus >= ONLINE && mStatus != PLAYING;
+		return mState == ONLINE_WEB || mState == ONLINE_MOBILE || mState == ONLINE_TABLET || mState == ONLINE_ORIGIN || mState == ONLINE_GAME;
 	}
+
+    public boolean isAway() {
+        return mState == AWAY_WEB || mState == AWAY_ORIGIN;
+    }
 	
 	public boolean isOffline() {
-		return mStatus == OFFLINE;
+		return mState == OFFLINE;
 	}
 	
 	public String getOnlineStatus() {
-		switch(mStatus) {
-			case OFFLINE:
-				return "OFFLINE";
-			case ONLINE:
-				return "ONLINE";
-			case PLAYING:
-				return "PLAYING";
-			default:
-				return "ONLINE"; // 1 <= x < 264 = online
-		}
-	}
+        switch(mState) {
+            case OFFLINE:
+                return "OFFLINE";
+            case ONLINE_WEB:
+            case ONLINE_ORIGIN:
+                return "ONLINE";
+            case ONLINE_TABLET:
+            case ONLINE_MOBILE:
+                return "ONLINE (APP)";
+            case ONLINE_GAME:
+                return "ONLINE (GAME)";
+            case PLAYING_MP:
+                return "PLAYING MP";
+            case PLAYING_COOP:
+                return "PLAYING COOP";
+            case PLAYING_ORIGIN:
+                return "PLAYING OTHER";
+            case AWAY_WEB:
+            case AWAY_ORIGIN:
+                return "AWAY";
+            case INVISIBLE_WEB:
+            case INVISIBLE_TABLET:
+            case INVISIBLE_MOBILE:
+                return "INVISIBLE";
+            default:
+                return "UNKNOWN (" + mState + ")";
+        }
+    }
 
 	@Override
 	public int describeContents() {
@@ -86,7 +125,7 @@ public class User implements Parcelable {
 	public void writeToParcel(Parcel out, int flags) {
 		out.writeLong(mId);
 		out.writeString(mUsername);
-		out.writeInt(mStatus);
+		out.writeLong(mState);
 	}
 	
 	public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
@@ -100,8 +139,8 @@ public class User implements Parcelable {
 	
 	@Override
 	public String toString() {
-		return "User [mId=" + mId + ", mUsername=" + mUsername + ", mStatus="
-				+ mStatus + "]";
+		return "User [mId=" + mId + ", mUsername=" + mUsername + ", mState="
+				+ mState + "]";
 	}
 
 }

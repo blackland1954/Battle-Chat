@@ -98,7 +98,7 @@ public class BattleChatService extends Service {
 
 	    			LoginHtmlParser parser = new LoginHtmlParser(response.parse());
 	    			if( parser.isLoggedIn() ) {
-		    			mUser = new User(parser.getUserId(), parser.getUsername(), User.ONLINE);
+		    			mUser = new User(parser.getUserId(), parser.getUsername(), User.ONLINE_MOBILE);
 		    			mCookie = BattleChat.getSession().getCookie();
 		    			mEmail = BattleChat.getSession().getEmail();
                         mChecksum = parser.getChecksum();

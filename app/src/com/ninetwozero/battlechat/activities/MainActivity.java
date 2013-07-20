@@ -17,6 +17,7 @@ package com.ninetwozero.battlechat.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import com.actionbarsherlock.view.Menu;
@@ -190,39 +191,35 @@ public class MainActivity extends AbstractListActivity {
 			int numPlaying = 0;
 			int numOnline = 0;
 			int numOffline = 0;
-			
+
+            User tempUser = null;
 			if( numFriends > 0 ) {
 				for( int i = 0; i < numFriends; i++ ) {
 					friend = friends.optJSONObject(i);
 					presenceState = friend.getJSONObject("presence").getInt("presenceStates");
-
-                    switch( presenceState ) {
-                        case User.PLAYING:
-                            numPlaying++;
-                            break;
-                        case User.OFFLINE:
-                            numOffline++;
-                            break;
-                        default: //Default to User.ONLINE
-                            numOnline++;
-                            break;
-                    }
-
-					users.add(
-                        new User(
+                    tempUser = new User(
                             Long.parseLong(friend.getString("userId")),
                             friend.getString("username"),
                             presenceState
-                        )
                     );
+                    users.add(tempUser);
+                    Log.d("YOLO", "tempUser => " + tempUser);
+
+                    if( tempUser.isPlaying() ) {
+                        numPlaying++;
+                    } else if( tempUser.isOffline() ) {
+                        numOffline++;
+                    } else {
+                        numOnline++;
+                    }
 				}
 
 				if (numPlaying > 0) {
-					users.add(new User(0, getString(R.string.label_playing), User.PLAYING));
+					users.add(new User(0, getString(R.string.label_playing), User.PLAYING_MP));
 				}
 
 				if (numOnline > 0) {
-					users.add(new User(0, getString(R.string.label_online), User.ONLINE));
+					users.add(new User(0, getString(R.string.label_online), User.ONLINE_WEB));
 				}
 
 				if (numOffline > 0) {

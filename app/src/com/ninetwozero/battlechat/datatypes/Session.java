@@ -33,7 +33,7 @@ public class Session {
 		mUser = new User(
 			sharedPreferences.getLong(Keys.Session.USER_ID, 0),
 			sharedPreferences.getString(Keys.Session.USERNAME, "N/A"),
-			User.ONLINE
+			User.ONLINE_WEB
 		);
 		mCookie = CookieFactory.build(
 			sharedPreferences.getString(Keys.Session.COOKIE_NAME, BattleChat.COOKIE_NAME),

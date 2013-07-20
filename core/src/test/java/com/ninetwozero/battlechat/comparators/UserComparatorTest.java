@@ -1,12 +1,11 @@
 package com.ninetwozero.battlechat.comparators;
 
 import com.ninetwozero.battlechat.datatypes.User;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,12 +18,12 @@ public class UserComparatorTest {
 	private static List<User> mUsersManual;
 	
 	public UserComparatorTest() {		
-		User user0 = new User(0, "Playing", User.PLAYING);
-		User user1 = new User(100, "Jarl Ank", User.PLAYING);
-		User user2 = new User(101, "Jarl Pank", User.PLAYING);
-		User user3 = new User(0, "Online", User.ONLINE);
-		User user5 = new User(201, "Sarl Ank", User.ONLINE);
-		User user4 = new User(200, "Jarl Pank", User.ONLINE);
+		User user0 = new User(0, "Playing", User.PLAYING_MP);
+		User user1 = new User(100, "Jarl Ank", User.PLAYING_COOP);
+		User user2 = new User(101, "Jarl Pank", User.PLAYING_ORIGIN);
+		User user3 = new User(0, "Online", User.ONLINE_WEB);
+		User user5 = new User(201, "Sarl Ank", User.ONLINE_GAME);
+		User user4 = new User(200, "Jarl Pank", User.ONLINE_MOBILE);
 		User user6 = new User(0, "Offline", User.OFFLINE);
 		User user7 = new User(300, "Amk", User.OFFLINE);
 		User user8 = new User(301, "Ank", User.OFFLINE);
