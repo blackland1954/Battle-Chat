@@ -57,7 +57,7 @@ public class User implements Parcelable {
 	}
 	
 	public boolean isOnline() {
-		return mStatus >= ONLINE && mStatus < PLAYING;
+		return mStatus >= ONLINE && mStatus != PLAYING;
 	}
 	
 	public boolean isOffline() {
@@ -73,7 +73,7 @@ public class User implements Parcelable {
 			case PLAYING:
 				return "PLAYING";
 			default:
-				return "ONLINE"; // 1 <= x < 264 = playing
+				return "ONLINE"; // 1 <= x < 264 = online
 		}
 	}
 

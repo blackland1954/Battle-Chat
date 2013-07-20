@@ -200,13 +200,11 @@ public class MainActivity extends AbstractListActivity {
                         case User.PLAYING:
                             numPlaying++;
                             break;
-                        case User.ONLINE:
-                            numOnline++;
-                            break;
                         case User.OFFLINE:
                             numOffline++;
                             break;
-                        default:
+                        default: //Default to User.ONLINE
+                            numOnline++;
                             break;
                     }
 
