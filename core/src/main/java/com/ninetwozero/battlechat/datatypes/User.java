@@ -71,15 +71,15 @@ public class User implements Parcelable {
 	}
 	
 	public boolean isPlaying() {
-		return mState == PLAYING_MP || mState == PLAYING_ORIGIN || mState ==  PLAYING_COOP;
+		return mState == PLAYING_MP;
 	}
 	
 	public boolean isOnline() {
-		return mState == ONLINE_WEB || mState == ONLINE_MOBILE || mState == ONLINE_TABLET || mState == ONLINE_ORIGIN || mState == ONLINE_GAME;
+		return mState == ONLINE_WEB;
 	}
 
     public boolean isAway() {
-        return mState == AWAY_WEB || mState == AWAY_ORIGIN;
+        return mState == AWAY_WEB;
     }
 	
 	public boolean isOffline() {
@@ -91,26 +91,11 @@ public class User implements Parcelable {
             case OFFLINE:
                 return "OFFLINE";
             case ONLINE_WEB:
-            case ONLINE_ORIGIN:
                 return "ONLINE";
-            case ONLINE_TABLET:
-            case ONLINE_MOBILE:
-                return "ONLINE (APP)";
-            case ONLINE_GAME:
-                return "ONLINE (GAME)";
             case PLAYING_MP:
-                return "PLAYING MP";
-            case PLAYING_COOP:
-                return "PLAYING COOP";
-            case PLAYING_ORIGIN:
-                return "PLAYING OTHER";
+                return "PLAYING";
             case AWAY_WEB:
-            case AWAY_ORIGIN:
                 return "AWAY";
-            case INVISIBLE_WEB:
-            case INVISIBLE_TABLET:
-            case INVISIBLE_MOBILE:
-                return "INVISIBLE";
             default:
                 return "UNKNOWN (" + mState + ")";
         }

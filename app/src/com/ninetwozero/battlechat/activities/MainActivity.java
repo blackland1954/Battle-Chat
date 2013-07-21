@@ -17,7 +17,6 @@ package com.ninetwozero.battlechat.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import com.actionbarsherlock.view.Menu;
@@ -184,6 +183,7 @@ public class MainActivity extends AbstractListActivity {
 		private List<User> getUsersFromJson(JSONObject result) throws JSONException {
 			JSONArray friends = result.getJSONArray("friendscomcenter");
 			JSONObject friend;
+            JSONObject presence;
 			int presenceState;
 			List<User> users = new ArrayList<User>();
 			
@@ -192,26 +192,35 @@ public class MainActivity extends AbstractListActivity {
 			int numOnline = 0;
 			int numOffline = 0;
 
-            User tempUser = null;
 			if( numFriends > 0 ) {
 				for( int i = 0; i < numFriends; i++ ) {
 					friend = friends.optJSONObject(i);
-					presenceState = friend.getJSONObject("presence").getInt("presenceStates");
-                    tempUser = new User(
+					presence = friend.getJSONObject("presence");
+                    presenceState = getPresenceStateFromJSON(presence);
+
+                    switch( presenceState ) {
+                        case User.PLAYING_MP:
+                            numPlaying++;
+                            break;
+                        case User.ONLINE_WEB:
+                        case User.AWAY_WEB:
+                            numOnline++;
+                            break;
+                        case User.OFFLINE:
+                            numOffline++;
+                            break;
+                        default:
+                            numOffline++;
+                            break;
+                    }
+
+                    users.add(
+                        new User(
                             Long.parseLong(friend.getString("userId")),
                             friend.getString("username"),
                             presenceState
+                        )
                     );
-                    users.add(tempUser);
-                    Log.d("YOLO", "tempUser => " + tempUser);
-
-                    if( tempUser.isPlaying() ) {
-                        numPlaying++;
-                    } else if( tempUser.isOffline() ) {
-                        numOffline++;
-                    } else {
-                        numOnline++;
-                    }
 				}
 
 				if (numPlaying > 0) {
@@ -228,8 +237,20 @@ public class MainActivity extends AbstractListActivity {
 				Collections.sort(users,	new UserComparator());
 			}
 			return users;
-		}		
-	}
+		}
+
+        private int getPresenceStateFromJSON(final JSONObject presence) {
+            if( presence.has("isPlaying") ) {
+                return User.PLAYING_MP;
+            } else if( presence.has("isAway") ) {
+                return User.AWAY_WEB;
+            } else if( presence.has("isOnline") ) {
+                return User.ONLINE_WEB;
+            } else {
+                return User.OFFLINE;
+            }
+        }
+    }
 	
 	private class LogoutTask extends AsyncTask<Void, Void, Boolean> {
 		@Override

@@ -14,15 +14,14 @@
 
 package com.ninetwozero.battlechat.adapters;
 
-import java.util.List;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.ninetwozero.battlechat.R;
 import com.ninetwozero.battlechat.abstractions.AbstractListAdapter;
 import com.ninetwozero.battlechat.datatypes.User;
+
+import java.util.List;
 
 public class UserListAdapter extends AbstractListAdapter<User> {
 	private final int HEADING = 0;
@@ -76,21 +75,23 @@ public class UserListAdapter extends AbstractListAdapter<User> {
 				convertView = mLayoutInflater.inflate(R.layout.list_item_user, null);
 			}
 		
-			setText(convertView, R.id.username, user.getUsername(), getColorForStatus(user.isPlaying(), user.isOnline()));
-			setText(convertView, R.id.online_status, user.getOnlineStatus(), getColorForStatus(user.isPlaying(), user.isOnline()));
+			setText(convertView, R.id.username, user.getUsername(), getColorForStatus(user.isPlaying(), user.isOnline(), user.isAway()));
+			setText(convertView, R.id.online_status, user.getOnlineStatus(), getColorForStatus(user.isPlaying(), user.isOnline(), user.isAway()));
 			convertView.setTag(user);
 		}
 		return convertView;
 	}
 
-	private int getColorForStatus(boolean playing, boolean online) {
+	private int getColorForStatus(boolean playing, boolean online, boolean away) {
 		if( playing ) {
 			return R.color.blue;
 		} else if( online ) {
 			return R.color.green;
-		} else {
-			return R.color.grey;
-		}
+		} else if( away ) {
+            return R.color.darkgreen;
+        } else {
+            return R.color.grey;
+        }
 	}
 
 }
