@@ -11,7 +11,7 @@
 
   <groupId>com.ninetwozero.battlechat</groupId>
   <artifactId>battle-chat-parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.6-BETA</version>
   <packaging>pom</packaging>
   <name>Battle-Chat - Parent</name>
 
