@@ -33,12 +33,10 @@ import com.ninetwozero.battlechat.misc.Keys;
 
 import org.apache.http.cookie.Cookie;
 
-
 public class BattleChat extends Application {
-	public final static String COOKIE_NAME = "beaker.session.id";
-	public final static String COOKIE_DOMAIN = "battlelog.battlefield.com";
-	public final static String TAG = "BattleChat";
-	
+    public static final String COOKIE_NAME = "beaker.session.id";
+    public static final String COOKIE_DOMAIN = "battlelog.battlefield.com";
+
     private static BattleChat mInstance;
     private static Session mSession;
 
@@ -47,109 +45,110 @@ public class BattleChat extends Application {
         super.onCreate();
         mInstance = this;
     }
+
     public static Context getContext() {
         return mInstance;
     }
-    
+
     public static Session getSession() {
-    	return mSession;
+        return mSession;
     }
-    
+
     public static void setSession(Session session) {
-    	mSession = session;
+        mSession = session;
     }
-    
+
     public static void reloadSession(final SharedPreferences sharedPreferences) {
-    	mSession = new Session(sharedPreferences);
+        mSession = new Session(sharedPreferences);
     }
-    
+
     public static void reloadSession(User user, Cookie cookie, String email, String checksum) {
-    	mSession = new Session(user, cookie, email, checksum);
+        mSession = new Session(user, cookie, email, checksum);
     }
-	
+
     public static boolean hasSession() {
-		return mSession != null;
-	}
-	
+        return mSession != null;
+    }
+
     public static void saveToSharedPreferences(Context c) {
-			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);
-			SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);
+        SharedPreferences.Editor editor = preferences.edit();
 
-			editor.putLong(Keys.Session.USER_ID, mSession.getUser().getId());
-            editor.putString(Keys.Session.USERNAME, mSession.getUser().getUsername());
-            editor.putString(Keys.Session.EMAIL, mSession.getEmail());
-			editor.putString(Keys.Session.COOKIE_NAME, mSession.getCookie().getName());
-			editor.putString(Keys.Session.COOKIE_VALUE, mSession.getCookie().getValue());
-			editor.putString(Keys.Session.CHECKSUM, mSession.getChecksum());
+        editor.putLong(Keys.Session.USER_ID, mSession.getUser().getId());
+        editor.putString(Keys.Session.USERNAME, mSession.getUser().getUsername());
+        editor.putString(Keys.Session.EMAIL, mSession.getEmail());
+        editor.putString(Keys.Session.COOKIE_NAME, mSession.getCookie().getName());
+        editor.putString(Keys.Session.COOKIE_VALUE, mSession.getCookie().getValue());
+        editor.putString(Keys.Session.CHECKSUM, mSession.getChecksum());
 
-			editor.commit();
+        editor.commit();
     }
-    
+
     public static void clearSession(Context c) {
-		BattleChat.mSession = null;
-    	
-    	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);
-		SharedPreferences.Editor editor = preferences.edit();
-		
-		editor.remove(Keys.Session.USER_ID);
-		editor.remove(Keys.Session.USERNAME);
-		editor.remove(Keys.Session.COOKIE_NAME);
-		editor.remove(Keys.Session.COOKIE_VALUE);
-		editor.remove(Keys.Session.CHECKSUM);
-		
-		editor.commit();
+        BattleChat.mSession = null;
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.remove(Keys.Session.USER_ID);
+        editor.remove(Keys.Session.USERNAME);
+        editor.remove(Keys.Session.COOKIE_NAME);
+        editor.remove(Keys.Session.COOKIE_VALUE);
+        editor.remove(Keys.Session.CHECKSUM);
+
+        editor.commit();
     }
-    
+
     public static void showLoggedInNotification(final Context c) {
-    	if( c == null ) {
-    		return;
-    	}
-    	
-    	final String subtitle = String.format(
-			c.getString(R.string.text_notification_subtitle_ok), 
-    		BattleChat.getSession().getUsername()
-		);
-    	
-    	NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(NOTIFICATION_SERVICE);
-    	mNotificationManager.cancel(R.string.service_name);
-    	
-    	Notification notification = new NotificationCompat.Builder(c)
-        .setContentTitle(c.getString(R.string.text_notification_title))
-        .setContentText(subtitle)
-        .setSmallIcon(R.drawable.ic_launcher)
-        .setOngoing(true)
-        .setContentIntent(PendingIntent.getActivity(c, 0, new Intent(c, LoginActivity.class), 0))
-        .getNotification();
-    	mNotificationManager.notify(R.string.service_name, notification);
+        if (c == null) {
+            return;
+        }
+
+        final String subtitle = String.format(
+                c.getString(R.string.text_notification_subtitle_ok),
+                BattleChat.getSession().getUsername()
+        );
+
+        NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(R.string.service_name);
+
+        Notification notification = new NotificationCompat.Builder(c)
+                .setContentTitle(c.getString(R.string.text_notification_title))
+                .setContentText(subtitle)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setOngoing(true)
+                .setContentIntent(PendingIntent.getActivity(c, 0, new Intent(c, LoginActivity.class), 0))
+                .build();
+        mNotificationManager.notify(R.string.service_name, notification);
     }
 
     public static void showLoggedOutNotification(final Context c) {
-    	NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(NOTIFICATION_SERVICE);
-    	mNotificationManager.cancel(R.string.service_name);
-    	
-    	Notification notification = new NotificationCompat.Builder(c)
-        .setContentTitle(c.getString(R.string.text_notification_title))
-        .setContentText(c.getString(R.string.text_notification_subtitle_fail))
-        .setSmallIcon(R.drawable.ic_launcher)
-        .setWhen(System.currentTimeMillis())
-        .setAutoCancel(true)
-        .setContentIntent(PendingIntent.getActivity(c, 0, new Intent(c, LoginActivity.class), 0))
-        .getNotification();
-    	mNotificationManager.notify(R.string.service_name, notification);
+        NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(R.string.service_name);
+
+        Notification notification = new NotificationCompat.Builder(c)
+                .setContentTitle(c.getString(R.string.text_notification_title))
+                .setContentText(c.getString(R.string.text_notification_subtitle_fail))
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setWhen(System.currentTimeMillis())
+                .setAutoCancel(true)
+                .setContentIntent(PendingIntent.getActivity(c, 0, new Intent(c, LoginActivity.class), 0))
+                .build();
+        mNotificationManager.notify(R.string.service_name, notification);
     }
-    
-	public static void clearNotification(final Context c) {
-    	NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(NOTIFICATION_SERVICE);
-    	mNotificationManager.cancel(R.string.service_name);
-	}
-	
-	public static boolean hasStoredCookie(final SharedPreferences preferences) {
-    	return !"".equals(preferences.getString(Keys.Session.COOKIE_VALUE, ""));
-	}
-	
-	public static boolean isConnectedToNetwork() {
-	    ConnectivityManager manager = (ConnectivityManager) getContext().getSystemService(CONNECTIVITY_SERVICE);
-	    NetworkInfo network = manager.getActiveNetworkInfo();
-	    return network != null && network.isConnected();
-	}
+
+    public static void clearNotification(final Context c) {
+        NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(R.string.service_name);
+    }
+
+    public static boolean hasStoredCookie(final SharedPreferences preferences) {
+        return !"".equals(preferences.getString(Keys.Session.COOKIE_VALUE, ""));
+    }
+
+    public static boolean isConnectedToNetwork() {
+        ConnectivityManager manager = (ConnectivityManager) getContext().getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo network = manager.getActiveNetworkInfo();
+        return network != null && network.isConnected();
+    }
 }

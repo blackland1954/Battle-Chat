@@ -20,47 +20,47 @@ import org.jsoup.select.Elements;
 
 final public class LoginHtmlParser {
 
-	private final Document mDocument;
-	
-	public LoginHtmlParser(final String html) {
-		mDocument = Jsoup.parse(html);
-	}
-	
-	public LoginHtmlParser(final Document document) {
-		mDocument = document.clone();
-	}
+    private final Document mDocument;
 
-	public long getUserId() {
-		String id = mDocument.select(".base-header-profile-dropdown-username .base-avatar-size-large").attr("rel");
-        if( id.equals("") ) {
+    public LoginHtmlParser(final String html) {
+        mDocument = Jsoup.parse(html);
+    }
+
+    public LoginHtmlParser(final Document document) {
+        mDocument = document.clone();
+    }
+
+    public long getUserId() {
+        String id = mDocument.select(".base-header-profile-dropdown-username .base-avatar-size-large").attr("rel");
+        if (id.equals("")) {
             id = "0";
         }
-		return Long.parseLong(id);
-	}
-	
-	public String getUsername() {
-		return mDocument.select(".header-profile-dropdown .profile > a > div").text();
-	}
-	
-	public String getChecksum() {
-		return mDocument.select("#profile-edit-form input[name=post-check-sum]").val();
-	}
-	
-	public boolean hasErrorMessage() {
-		Elements error = mDocument.select(".gate-login-errormsg.wfont");
-		if( error.isEmpty() ) {
-			return false;
-		} else {
-			return error.hasText();
-		}
-	}
+        return Long.parseLong(id);
+    }
 
-	public String getErrorMessage() {
-		return mDocument.select(".gate-login-errormsg.wfont").first().text();
-	}
-	
-	public boolean isLoggedIn() {
-		return mDocument.select(".gate-login-errormsg").isEmpty();
-	}
-	
+    public String getUsername() {
+        return mDocument.select(".header-profile-dropdown .profile > a > div").text();
+    }
+
+    public String getChecksum() {
+        return mDocument.select("#profile-edit-form input[name=post-check-sum]").val();
+    }
+
+    public boolean hasErrorMessage() {
+        Elements error = mDocument.select(".gate-login-errormsg.wfont");
+        if (error.isEmpty()) {
+            return false;
+        } else {
+            return error.hasText();
+        }
+    }
+
+    public String getErrorMessage() {
+        return mDocument.select(".gate-login-errormsg.wfont").first().text();
+    }
+
+    public boolean isLoggedIn() {
+        return mDocument.select(".gate-login-errormsg").isEmpty();
+    }
+
 }

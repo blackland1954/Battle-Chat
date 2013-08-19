@@ -27,46 +27,44 @@ import com.ninetwozero.battlechat.R;
 
 public class AboutActivity extends SherlockActivity {
 
-	public final static String TAG = "AboutActivity";
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_about);
-		setupVersion();
-		setupLink();
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_about);
+        setupVersion();
+        setupLink();
+    }
 
-	private void setupVersion() {
-		String versionNumber = "Unknown";
-		try {
-			versionNumber = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}
-		((TextView) findViewById(R.id.version)).setText(versionNumber);
-	}
-	
-	private void setupLink() {
-		findViewById(R.id.link).setOnClickListener(
-			new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("http://www.ninetwozero.com")));
-				}
-			}
-		);
-		findViewById(R.id.email).setOnClickListener(
-			new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					Intent intent = new Intent(Intent.ACTION_SEND).putExtra(
-						Intent.EXTRA_EMAIL, 
-						new String[] {"support@ninetwozero.com"}
-					).setType("plain/text");
-					startActivity(Intent.createChooser(intent, "Send an e-mail..."));
-				}
-			}
-		);
-	}
+    private void setupVersion() {
+        String versionNumber = "Unknown";
+        try {
+            versionNumber = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        ((TextView) findViewById(R.id.version)).setText(versionNumber);
+    }
+
+    private void setupLink() {
+        findViewById(R.id.link).setOnClickListener(
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("http://www.ninetwozero.com")));
+                    }
+                }
+        );
+        findViewById(R.id.email).setOnClickListener(
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_SEND).putExtra(
+                                Intent.EXTRA_EMAIL,
+                                new String[]{"support@ninetwozero.com"}
+                        ).setType("plain/text");
+                        startActivity(Intent.createChooser(intent, "Send an e-mail..."));
+                    }
+                }
+        );
+    }
 }

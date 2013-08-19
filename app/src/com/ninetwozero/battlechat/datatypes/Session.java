@@ -24,55 +24,55 @@ import org.apache.http.cookie.Cookie;
 
 public class Session {
 
-	private User mUser;
-	private Cookie mCookie;
+    private User mUser;
+    private Cookie mCookie;
     private String mEmail;
-	private String mChecksum;
-	
-	public Session(SharedPreferences sharedPreferences) {
-		mUser = new User(
-			sharedPreferences.getLong(Keys.Session.USER_ID, 0),
-			sharedPreferences.getString(Keys.Session.USERNAME, "N/A"),
-			User.ONLINE_WEB
-		);
-		mCookie = CookieFactory.build(
-			sharedPreferences.getString(Keys.Session.COOKIE_NAME, BattleChat.COOKIE_NAME),
-			sharedPreferences.getString(Keys.Session.COOKIE_VALUE, "")
-		);
+    private String mChecksum;
+
+    public Session(SharedPreferences sharedPreferences) {
+        mUser = new User(
+                sharedPreferences.getLong(Keys.Session.USER_ID, 0),
+                sharedPreferences.getString(Keys.Session.USERNAME, "N/A"),
+                User.ONLINE_WEB
+        );
+        mCookie = CookieFactory.build(
+                sharedPreferences.getString(Keys.Session.COOKIE_NAME, BattleChat.COOKIE_NAME),
+                sharedPreferences.getString(Keys.Session.COOKIE_VALUE, "")
+        );
         mEmail = sharedPreferences.getString(Keys.Session.EMAIL, "");
-		mChecksum = sharedPreferences.getString(Keys.Session.CHECKSUM, "");
-	}
-	
-	public Session(User user, Cookie cookie, String email, String checksum) {
-		mUser = user;
-		mCookie = cookie;
+        mChecksum = sharedPreferences.getString(Keys.Session.CHECKSUM, "");
+    }
+
+    public Session(User user, Cookie cookie, String email, String checksum) {
+        mUser = user;
+        mCookie = cookie;
         mEmail = email;
-		mChecksum = checksum;
-	}
-	
-	public User getUser() {
-		return mUser;
-	}
-	
-	public String getUsername() {
-		return mUser.getUsername();
-	}
+        mChecksum = checksum;
+    }
+
+    public User getUser() {
+        return mUser;
+    }
+
+    public String getUsername() {
+        return mUser.getUsername();
+    }
 
     public String getEmail() {
         return mEmail;
     }
-	
-	public Cookie getCookie() {
-		return mCookie;
-	}
-		
-	public String getChecksum() {
-		return mChecksum;
-	}
 
-	@Override
-	public String toString() {
-		return "Session [mUser=" + mUser + ", mCookie=" + mCookie
-				+ ", mChecksum=" + mChecksum + "]";
-	}
+    public Cookie getCookie() {
+        return mCookie;
+    }
+
+    public String getChecksum() {
+        return mChecksum;
+    }
+
+    @Override
+    public String toString() {
+        return "Session [mUser=" + mUser + ", mCookie=" + mCookie
+                + ", mChecksum=" + mChecksum + "]";
+    }
 }

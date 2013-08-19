@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 	This file is part of BattleChat
 
     BattleChat is free software: you can redistribute it and/or modify
@@ -11,22 +10,22 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
---><manifest
-  xmlns:android="http://schemas.android.com/apk/res/android"
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
   android:versionCode="15"
   android:versionName="1.0.6"
   package="com.ninetwozero.battlechat">
 
   <uses-sdk
     android:minSdkVersion="8"
-    android:targetSdkVersion="17"/>
+    android:targetSdkVersion="17" />
 
   <!-- Used by instrumentation tests only. Do not include in production apps unless necessary! -->
-  <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
-  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
   <application
     android:allowBackup="true"
@@ -43,32 +42,32 @@
       android:windowSoftInputMode="adjustResize|stateVisible">
 
       <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.LAUNCHER"/>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
 
     <activity
       android:label="@string/title_main"
-      android:name=".activities.MainActivity"/>
+      android:name=".activities.MainActivity" />
 
     <activity
       android:label="@string/title_about"
-      android:name=".activities.AboutActivity"/>
+      android:name=".activities.AboutActivity" />
 
     <activity
       android:label="@string/title_chat"
       android:name=".activities.ChatActivity"
-      android:windowSoftInputMode="adjustPan"/>
+      android:windowSoftInputMode="adjustPan" />
 
     <activity
       android:label="@string/title_settings"
-      android:name=".activities.SettingsActivity"/>
+      android:name=".activities.SettingsActivity" />
 
     <service
       android:icon="@drawable/ic_launcher"
       android:label="@string/service_name"
-      android:name=".services.BattleChatService"/>
+      android:name=".services.BattleChatService" />
   </application>
 
 </manifest>

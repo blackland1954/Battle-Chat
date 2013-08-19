@@ -12,131 +12,131 @@
     GNU General Public License for more details.
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content">
+
+    <!-- Disclaimer -->
 
     <RelativeLayout
+      android:id="@+id/wrap_disclaimer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:padding="5dp">
+
+      <TextView
+        android:id="@+id/text_disclaimer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/text_login_disclaimer" />
 
-        <!-- Disclaimer -->
+      <LinearLayout
+        android:id="@+id/wrap_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_disclaimer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
 
-        <RelativeLayout
-            android:id="@+id/wrap_disclaimer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:padding="5dp" >
+        <CheckBox
+          android:id="@+id/checkbox_accept"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/text_disclaimer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/text_login_disclaimer" />
-
-            <LinearLayout
-                android:id="@+id/wrap_top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_disclaimer"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:gravity="center" >
-
-                <CheckBox
-                    android:id="@+id/checkbox_accept"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/text_accept"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_login_accept_terms" />
-            </LinearLayout>
-        </RelativeLayout>
-        <!-- Login form -->
-
-        <LinearLayout
-            android:id="@+id/login_form"
-            style="@style/LoginFormContainer"
-            android:layout_below="@id/wrap_disclaimer"
-            android:orientation="vertical"
-            android:visibility="gone" >
-
-            <TextView
-                android:id="@+id/text_network"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#FFFFFF"
-                android:text="@string/msg_no_network"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:visibility="gone" />
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="@string/app_email" />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="" />
-
-            <Button
-                android:id="@+id/sign_in_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="16dp"
-                android:paddingLeft="32dp"
-                android:paddingRight="32dp"
-                android:text="@string/action_sign_in_short" />
-        </LinearLayout>
-        
-        <!-- Login progress -->
-
-        <LinearLayout
-            android:id="@+id/login_status"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone" >
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/login_status_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/login_progress_signing_in"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
+        <TextView
+          android:id="@+id/text_accept"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/text_login_accept_terms" />
+      </LinearLayout>
     </RelativeLayout>
+    <!-- Login form -->
+
+    <LinearLayout
+      android:id="@+id/login_form"
+      style="@style/LoginFormContainer"
+      android:layout_below="@id/wrap_disclaimer"
+      android:orientation="vertical"
+      android:visibility="gone">
+
+      <TextView
+        android:id="@+id/text_network"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:text="@string/msg_no_network"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:visibility="gone" />
+
+      <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="@string/app_email" />
+
+      <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_password"
+        android:imeActionId="@+id/login"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionUnspecified"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="" />
+
+      <Button
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:text="@string/action_sign_in_short" />
+    </LinearLayout>
+
+    <!-- Login progress -->
+
+    <LinearLayout
+      android:id="@+id/login_status"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_gravity="center"
+      android:layout_marginTop="50dp"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:visibility="gone">
+
+      <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" />
+
+      <TextView
+        android:id="@+id/login_status_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/login_progress_signing_in"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+  </RelativeLayout>
 
 </ScrollView>

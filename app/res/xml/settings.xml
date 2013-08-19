@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 	This file is part of BattleChat
 
     BattleChat is free software: you can redistribute it and/or modify
@@ -13,25 +12,26 @@
     GNU General Public License for more details.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:sample="http://schemas.android.com/apk/res/com.ninetwozero.battlechat" >
+  xmlns:sample="http://schemas.android.com/apk/res/com.ninetwozero.battlechat">
 
-    <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="persistent_notification"
-        android:summaryOff="@string/text_preference_notification_off"
-        android:summaryOn="@string/text_preference_notification_on"
-        android:title="@string/text_preference_notification_title" />
-    <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="beep_on_new_message"
-        android:summaryOff="@string/text_preference_beep_off"
-        android:summaryOn="@string/text_preference_beep_on"
-        android:title="@string/text_preference_beep_title"/>
+  <CheckBoxPreference
+    android:defaultValue="true"
+    android:key="persistent_notification"
+    android:summaryOff="@string/text_preference_notification_off"
+    android:summaryOn="@string/text_preference_notification_on"
+    android:title="@string/text_preference_notification_title" />
+  <CheckBoxPreference
+    android:defaultValue="true"
+    android:key="beep_on_new_message"
+    android:summaryOff="@string/text_preference_beep_off"
+    android:summaryOn="@string/text_preference_beep_on"
+    android:title="@string/text_preference_beep_title" />
 
-    <com.kmansoft.IntegerListPreference
-        android:defaultValue="25"
-        android:key="chat_refresh_interval"
-        android:title="@string/text_preference_interval_title"
-        sample:entryList="@array/update_interval_entries"
-        sample:valueList="@array/update_interval_values" />
-</PreferenceScreen>
+  <com.kmansoft.IntegerListPreference
+    android:defaultValue="25"
+    android:key="chat_refresh_interval"
+    android:title="@string/text_preference_interval_title"
+    sample:entryList="@array/update_interval_entries"
+    sample:valueList="@array/update_interval_values" />
+
+</PreferenceScreen>

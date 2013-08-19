@@ -27,52 +27,52 @@ import com.ninetwozero.battlechat.http.BattleChatClient;
 import com.ninetwozero.battlechat.misc.Keys;
 
 public class AbstractListActivity extends SherlockListActivity {
-	protected SharedPreferences mSharedPreferences;
-	private Toast mToast;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-		if( BattleChat.hasStoredCookie(mSharedPreferences) ) {
-			setupBattleChatClient();
-			showNotification();
-		} else {
-			sendToLoginScreen();
-		}
-	}
+    protected SharedPreferences mSharedPreferences;
+    private Toast mToast;
 
-	final protected void sendToLoginScreen() {
-		startActivity( new Intent(this, LoginActivity.class) );
-		finish();
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (BattleChat.hasStoredCookie(mSharedPreferences)) {
+            setupBattleChatClient();
+            showNotification();
+        } else {
+            sendToLoginScreen();
+        }
+    }
 
-	public void showToast(final int resource) {
-		showToast(getString(resource));
-	}
-	
-	public void showToast(final String text) {
-		if( mToast != null ) { 
-			mToast.cancel();
-			mToast = null;
-		}
-		
-		mToast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
-		mToast.show();
-	}
-	
-	private void setupBattleChatClient() {
-		if( !BattleChat.hasSession() && BattleChat.hasStoredCookie(mSharedPreferences) ) {
-			BattleChat.reloadSession(mSharedPreferences);
-		}
-		BattleChatClient.setCookie(BattleChat.getSession().getCookie());
-	}
-	
-	protected void showNotification() {
-		if( mSharedPreferences.getBoolean(Keys.Settings.PERSISTENT_NOTIFICATION, true) ) {
-			BattleChat.showLoggedInNotification(getApplicationContext());
-		} else {
-			BattleChat.clearNotification(getApplicationContext());
-		}
-	}
+    final protected void sendToLoginScreen() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+
+    public void showToast(final int resource) {
+        showToast(getString(resource));
+    }
+
+    public void showToast(final String text) {
+        if (mToast != null) {
+            mToast.cancel();
+            mToast = null;
+        }
+
+        mToast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+        mToast.show();
+    }
+
+    private void setupBattleChatClient() {
+        if (!BattleChat.hasSession() && BattleChat.hasStoredCookie(mSharedPreferences)) {
+            BattleChat.reloadSession(mSharedPreferences);
+        }
+        BattleChatClient.setCookie(BattleChat.getSession().getCookie());
+    }
+
+    protected void showNotification() {
+        if (mSharedPreferences.getBoolean(Keys.Settings.PERSISTENT_NOTIFICATION, true)) {
+            BattleChat.showLoggedInNotification(getApplicationContext());
+        } else {
+            BattleChat.clearNotification(getApplicationContext());
+        }
+    }
 }

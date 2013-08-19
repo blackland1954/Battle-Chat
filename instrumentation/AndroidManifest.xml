@@ -7,10 +7,10 @@
   <application
     android:debuggable="true"
     android:label="@string/app_name">
-    <uses-library android:name="android.test.runner"/>
+    <uses-library android:name="android.test.runner" />
   </application>
 
   <instrumentation
     android:name=".BattleChatInstrumentationTestRunner"
-    android:targetPackage="com.ninetwozero.battlechat"/>
+    android:targetPackage="com.ninetwozero.battlechat" />
 </manifest>

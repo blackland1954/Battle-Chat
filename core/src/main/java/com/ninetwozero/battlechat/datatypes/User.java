@@ -41,53 +41,53 @@ public class User implements Parcelable {
     public static final long GROUP_ORIGIN = 8589934592L;
 
     private long mId;
-	private String mUsername;
-	private int mState;
-	
-	public User(Parcel in) {
-		mId = in.readLong();
-		mUsername = in.readString();
-		mState = in.readInt();
-	}
-	
-	public User(long id, String name) {
-		mId = id;
-		mUsername = name;
-		mState = ONLINE_WEB;
-	}
-	
-	public User(long id, String name, int status) {
-		mId = id;
-		mUsername = name;
-		mState = status;
-	}
-	
-	public long getId() {
-		return mId;
-	}
-	
-	public String getUsername() {
-		return mUsername;
-	}
-	
-	public boolean isPlaying() {
-		return mState == PLAYING_MP;
-	}
-	
-	public boolean isOnline() {
-		return mState == ONLINE_WEB;
-	}
+    private String mUsername;
+    private int mState;
+
+    public User(Parcel in) {
+        mId = in.readLong();
+        mUsername = in.readString();
+        mState = in.readInt();
+    }
+
+    public User(long id, String name) {
+        mId = id;
+        mUsername = name;
+        mState = ONLINE_WEB;
+    }
+
+    public User(long id, String name, int status) {
+        mId = id;
+        mUsername = name;
+        mState = status;
+    }
+
+    public long getId() {
+        return mId;
+    }
+
+    public String getUsername() {
+        return mUsername;
+    }
+
+    public boolean isPlaying() {
+        return mState == PLAYING_MP;
+    }
+
+    public boolean isOnline() {
+        return mState == ONLINE_WEB;
+    }
 
     public boolean isAway() {
         return mState == AWAY_WEB;
     }
-	
-	public boolean isOffline() {
-		return mState == OFFLINE;
-	}
-	
-	public String getOnlineStatus() {
-        switch(mState) {
+
+    public boolean isOffline() {
+        return mState == OFFLINE;
+    }
+
+    public String getOnlineStatus() {
+        switch (mState) {
             case OFFLINE:
                 return "OFFLINE";
             case ONLINE_WEB:
@@ -101,31 +101,32 @@ public class User implements Parcelable {
         }
     }
 
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-	
-	@Override
-	public void writeToParcel(Parcel out, int flags) {
-		out.writeLong(mId);
-		out.writeString(mUsername);
-		out.writeLong(mState);
-	}
-	
-	public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
-		public User createFromParcel(Parcel in) {
-			return new User(in);
-		}
-		public User[] newArray(int size) {
-			return new User[size];
-		}
-	};
-	
-	@Override
-	public String toString() {
-		return "User [mId=" + mId + ", mUsername=" + mUsername + ", mState="
-				+ mState + "]";
-	}
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeLong(mId);
+        out.writeString(mUsername);
+        out.writeLong(mState);
+    }
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    @Override
+    public String toString() {
+        return "User [mId=" + mId + ", mUsername=" + mUsername + ", mState="
+                + mState + "]";
+    }
 
 }

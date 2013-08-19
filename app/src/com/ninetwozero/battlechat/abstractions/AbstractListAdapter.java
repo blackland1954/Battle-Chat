@@ -14,9 +14,6 @@
 
 package com.ninetwozero.battlechat.abstractions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,59 +21,55 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public abstract class AbstractListAdapter<T extends Object> extends BaseAdapter {
-	protected final static String TAG = "AbstractListAdapter";
-	
-	protected Context mContext;
-	protected List<T> mItems;
-	protected final LayoutInflater mLayoutInflater;
-		
-	public AbstractListAdapter(Context context) {
-		mContext = context;
-		mItems = new ArrayList<T>();
-		mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	}
-	
-	public AbstractListAdapter(Context context, List<T> items) {	
-		mContext = context;
-		mItems = items;
-		mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	}
+import java.util.ArrayList;
+import java.util.List;
 
-	@Override
-	final public int getCount() {
-		return mItems == null? 0 : mItems.size();
-	}
+public abstract class AbstractListAdapter<T> extends BaseAdapter {
 
-	@Override
-	final public T getItem(int position) {
-		return mItems.get(position);
-	}
-	
-	final public List<T> getItems() {
-		return mItems;
-	}
-	
-	final public void setItems(List<T> items) {
-		mItems = items;
-		notifyDataSetChanged();
-	}
-	
-	final public void setText(View container, int resourceId, Object text) {
-		setText(container, resourceId, text, -1);
-	}
-	
-	final public void setText(View container, int resourceId, Object text, int colorResource) {
-		TextView textView = (TextView) container.findViewById(resourceId);
-		textView.setText(String.valueOf(text));	
-		if( colorResource > -1 ){
-			textView.setTextColor(mContext.getResources().getColor(colorResource));
-		}
-	}
+    protected Context mContext;
+    protected List<T> mItems;
+    protected final LayoutInflater mLayoutInflater;
 
-	@Override
-	abstract public long getItemId(int position);
+    public AbstractListAdapter(Context context) {
+        mContext = context;
+        mItems = new ArrayList<T>();
+        mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
 
-	@Override
-	abstract public View getView(int position, View convertView, ViewGroup parent);
+    @Override
+    public final int getCount() {
+        return mItems == null ? 0 : mItems.size();
+    }
+
+    @Override
+    public final T getItem(int position) {
+        return mItems.get(position);
+    }
+
+    public final List<T> getItems() {
+        return mItems;
+    }
+
+    public final void setItems(List<T> items) {
+        mItems = items;
+        notifyDataSetChanged();
+    }
+
+    public final void setText(View container, int resourceId, Object text) {
+        setText(container, resourceId, text, -1);
+    }
+
+    public final void setText(View container, int resourceId, Object text, int colorResource) {
+        TextView textView = (TextView) container.findViewById(resourceId);
+        textView.setText(String.valueOf(text));
+        if (colorResource > -1) {
+            textView.setTextColor(mContext.getResources().getColor(colorResource));
+        }
+    }
+
+    @Override
+    public abstract long getItemId(int position);
+
+    @Override
+    public abstract View getView(int position, View convertView, ViewGroup parent);
 }

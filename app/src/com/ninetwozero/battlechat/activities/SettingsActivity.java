@@ -21,12 +21,10 @@ import com.ninetwozero.battlechat.R;
 
 public class SettingsActivity extends SherlockPreferenceActivity {
 
-	public static final String TAG = "SettingsActivity";
-
-	@SuppressWarnings("deprecation") // TODO: Known issue
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.settings);
-	}
+    @SuppressWarnings("deprecation") // TODO: Known issue
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.settings);
+    }
 }

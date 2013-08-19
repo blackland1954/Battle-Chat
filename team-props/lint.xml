@@ -8,13 +8,15 @@
     <ignore path="target/classes/com/actionbarsherlock/internal/view/ActionProviderWrapper.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/view/menu/ActionMenuItemView.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/view/menu/MenuItemWrapper.class" />
-    <ignore path="target/classes/com/actionbarsherlock/internal/view/menu/ActionMenuPresenter$HasPermanentMenuKey.class" />
+    <ignore
+      path="target/classes/com/actionbarsherlock/internal/view/menu/ActionMenuPresenter$HasPermanentMenuKey.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/widget/IcsAdapterView.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/widget/IcsProgressBar.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/widget/ActionBarView$HomeView.class" />
     <ignore path="target/classes/com/actionbarsherlock/widget/SearchView.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/nineoldandroids/widget/NineFrameLayout.class" />
-    <ignore path="target/classes/com/actionbarsherlock/internal/nineoldandroids/widget/NineHorizontalScrollView.class" />
+    <ignore
+      path="target/classes/com/actionbarsherlock/internal/nineoldandroids/widget/NineHorizontalScrollView.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/nineoldandroids/widget/NineLinearLayout.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/nineoldandroids/view/NineViewGroup.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/view/menu/BaseMenuPresenter.class" />
@@ -32,7 +34,8 @@
     <ignore path="target/classes/com/actionbarsherlock/app/SherlockExpandableListActivity.class" />
     <ignore path="target/classes/com/actionbarsherlock/app/SherlockListActivity.class" />
     <ignore path="target/classes/com/actionbarsherlock/app/SherlockPreferenceActivity.class" />
-    <ignore path="target/classes/com/actionbarsherlock/internal/ActionBarSherlockNative$ActionModeCallbackWrapper.class" />
+    <ignore
+      path="target/classes/com/actionbarsherlock/internal/ActionBarSherlockNative$ActionModeCallbackWrapper.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/app/ActionBarImpl$1.class" />
     <ignore path="target/classes/com/actionbarsherlock/internal/app/ActionBarImpl.class" />
   </issue>

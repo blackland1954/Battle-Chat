@@ -63,7 +63,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         assertThat(signIn).isVisible();
     }
 
-    public void testEmptyForm_ShowsBothErrors(){
+    public void testEmptyForm_ShowsBothErrors() {
         tickCheckBox();
 
         Spoon.screenshot(activity, "initial_state");

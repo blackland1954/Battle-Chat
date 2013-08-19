@@ -21,16 +21,18 @@ import org.apache.http.params.HttpParams;
 
 public class HttpClientFactory {
 
-	private static DefaultHttpClient mHttpClient;
+    private static DefaultHttpClient mHttpClient;
 
-	private HttpClientFactory() {}
-	public static DefaultHttpClient getThreadSafeClient() {
-		if (mHttpClient == null) {
-			mHttpClient = new DefaultHttpClient();
-			ClientConnectionManager mgr = mHttpClient.getConnectionManager();
-			HttpParams params = mHttpClient.getParams();
-			mHttpClient = new DefaultHttpClient(new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()), params);
-		}			
-		return mHttpClient;
-	}
+    private HttpClientFactory() {
+    }
+
+    public static DefaultHttpClient getThreadSafeClient() {
+        if (mHttpClient == null) {
+            mHttpClient = new DefaultHttpClient();
+            ClientConnectionManager mgr = mHttpClient.getConnectionManager();
+            HttpParams params = mHttpClient.getParams();
+            mHttpClient = new DefaultHttpClient(new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()), params);
+        }
+        return mHttpClient;
+    }
 }
