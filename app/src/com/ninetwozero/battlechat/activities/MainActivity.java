@@ -183,9 +183,9 @@ public class MainActivity extends AbstractListActivity {
 		}
 		
 		private List<User> getUsersFromJson(JSONObject result) throws JSONException {
-            List<User> users = new ArrayList<User>();
+			List<User> users = new ArrayList<User>();
 			JSONArray friends = result.getJSONArray("friendscomcenter");
-            JSONObject friend;
+			JSONObject friend;
 			JSONObject presence;
 			int presenceState;
 			
