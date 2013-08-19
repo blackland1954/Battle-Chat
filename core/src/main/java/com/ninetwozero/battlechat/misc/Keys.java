@@ -17,21 +17,21 @@ package com.ninetwozero.battlechat.misc;
 public class Keys {
 
     public static class Session {
-        public final static String USER_ID = "userId";
-        public final static String USERNAME = "username";
-        public final static String EMAIL = "email";
-        public final static String COOKIE_NAME = "sessionName";
-        public final static String COOKIE_VALUE = "sessionValue";
-        public final static String CHECKSUM = "sessionChecksum";
+        public static final String USER_ID = "userId";
+        public static final String USERNAME = "username";
+        public static final String EMAIL = "email";
+        public static final String COOKIE_NAME = "sessionName";
+        public static final String COOKIE_VALUE = "sessionValue";
+        public static final String CHECKSUM = "sessionChecksum";
 
         private Session() {
         }
     }
 
     public static class Settings {
-        public final static String PERSISTENT_NOTIFICATION = "persistent_notification";
-        public final static String CHAT_INTERVAL = "chat_refresh_interval";
-        public final static String BEEP_ON_NEW = "beep_on_new_message";
+        public static final String PERSISTENT_NOTIFICATION = "persistent_notification";
+        public static final String CHAT_INTERVAL = "chat_refresh_interval";
+        public static final String BEEP_ON_NEW = "beep_on_new_message";
 
         private Settings() {
         }

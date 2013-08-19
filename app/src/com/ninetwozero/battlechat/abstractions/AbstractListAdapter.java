@@ -37,29 +37,29 @@ public abstract class AbstractListAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    final public int getCount() {
+    public final int getCount() {
         return mItems == null ? 0 : mItems.size();
     }
 
     @Override
-    final public T getItem(int position) {
+    public final T getItem(int position) {
         return mItems.get(position);
     }
 
-    final public List<T> getItems() {
+    public final List<T> getItems() {
         return mItems;
     }
 
-    final public void setItems(List<T> items) {
+    public final void setItems(List<T> items) {
         mItems = items;
         notifyDataSetChanged();
     }
 
-    final public void setText(View container, int resourceId, Object text) {
+    public final void setText(View container, int resourceId, Object text) {
         setText(container, resourceId, text, -1);
     }
 
-    final public void setText(View container, int resourceId, Object text, int colorResource) {
+    public final void setText(View container, int resourceId, Object text, int colorResource) {
         TextView textView = (TextView) container.findViewById(resourceId);
         textView.setText(String.valueOf(text));
         if (colorResource > -1) {
@@ -68,8 +68,8 @@ public abstract class AbstractListAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    abstract public long getItemId(int position);
+    public abstract long getItemId(int position);
 
     @Override
-    abstract public View getView(int position, View convertView, ViewGroup parent);
+    public abstract View getView(int position, View convertView, ViewGroup parent);
 }

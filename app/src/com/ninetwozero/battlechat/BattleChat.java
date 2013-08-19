@@ -34,8 +34,8 @@ import com.ninetwozero.battlechat.misc.Keys;
 import org.apache.http.cookie.Cookie;
 
 public class BattleChat extends Application {
-    public final static String COOKIE_NAME = "beaker.session.id";
-    public final static String COOKIE_DOMAIN = "battlelog.battlefield.com";
+    public static final String COOKIE_NAME = "beaker.session.id";
+    public static final String COOKIE_DOMAIN = "battlelog.battlefield.com";
 
     private static BattleChat mInstance;
     private static Session mSession;
