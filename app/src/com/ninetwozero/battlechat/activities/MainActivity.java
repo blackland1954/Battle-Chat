@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.ninetwozero.battlechat.BattleChat;
@@ -30,16 +31,17 @@ import com.ninetwozero.battlechat.datatypes.User;
 import com.ninetwozero.battlechat.http.BattleChatClient;
 import com.ninetwozero.battlechat.http.HttpUris;
 import com.ninetwozero.battlechat.services.BattleChatService;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.apache.http.cookie.Cookie;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class MainActivity extends AbstractListActivity {
 
@@ -181,11 +183,11 @@ public class MainActivity extends AbstractListActivity {
 		}
 		
 		private List<User> getUsersFromJson(JSONObject result) throws JSONException {
+            List<User> users = new ArrayList<User>();
 			JSONArray friends = result.getJSONArray("friendscomcenter");
-			JSONObject friend;
-            JSONObject presence;
+            JSONObject friend;
+			JSONObject presence;
 			int presenceState;
-			List<User> users = new ArrayList<User>();
 			
 			int numFriends = friends.length();
 			int numPlaying = 0;
@@ -196,7 +198,7 @@ public class MainActivity extends AbstractListActivity {
 				for( int i = 0; i < numFriends; i++ ) {
 					friend = friends.optJSONObject(i);
 					presence = friend.getJSONObject("presence");
-                    presenceState = getPresenceStateFromJSON(presence);
+					presenceState = getPresenceStateFromJSON(presence);
 
                     switch( presenceState ) {
                         case User.PLAYING_MP:
