@@ -31,10 +31,6 @@ public class UserListAdapter extends AbstractListAdapter<User> {
 		super(context);
 	}
 	
-	public UserListAdapter(Context context, List<User> items) {
-		super(context, items);
-	}
-	
 	@Override
 	public boolean isEnabled(int position) {
 		return getItem(position).getId() > 0;
