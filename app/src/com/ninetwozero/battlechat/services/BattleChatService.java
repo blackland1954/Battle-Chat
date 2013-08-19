@@ -38,7 +38,7 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 public class BattleChatService extends Service {
-    private static final String TAG = "BattlelogSessionService";
+    private static final String TAG = BattleChatService.class.getSimpleName();
 
     private final IBinder mBinder = new LocalBinder();
 

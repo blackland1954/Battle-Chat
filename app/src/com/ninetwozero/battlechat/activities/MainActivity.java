@@ -45,8 +45,6 @@ import org.jsoup.Jsoup;
 
 public class MainActivity extends AbstractListActivity {
 
-    public final static String TAG = "MainActivity";
-
     private ReloadTask mReloadTask;
 
     @Override
